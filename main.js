@@ -35,7 +35,7 @@ function startInput() {
         alert("That operator is not supported or does not exist");
         return "The arithmetic is not valid";
     }
-    return doMaffs(operator, number1, number2);
+    return [doMaffs(operator, number1, number2),number1,operator, number2];
 
 }
 
@@ -46,8 +46,8 @@ function keypadOnClick(button, input) {
 }
 let storedFirstInput, operatorInput;
 function operatorOnClick(button, input) {
-    if (storedFirstInput === null) return;
     button.addEventListener("click", () => {
+        if (storedFirstInput !== null) return;
         storedFirstInput = input.value;
         operatorInput = button.innerText;
         input.value = "";
@@ -76,12 +76,16 @@ document.addEventListener("DOMContentLoaded", () => {
             storedFirstInput = null;
         });
     }
+    //Keyboard
     let keyboardInput = document.getElementById("keyboardInput");
     if (keyboardInput !== null) {
         keyboardInput.addEventListener("click", () => {
+            let startKeyboard = startInput();
             document.write(`
-                <h1>The number is!</h1>
-                <p>${startInput()}</p>
+
+                <h1>${startKeyboard[1]} ${startKeyboard[2]} ${startKeyboard[3]} equals:</h1>
+                <p>${startKeyboard[0]}</p>
+                <button type="button" id="keyboardInput">Start Keyboard Input</button>
             `);
         });
     }
