@@ -47,7 +47,6 @@ function keypadOnClick(button, input) {
 let storedFirstInput, operatorInput;
 function operatorOnClick(button, input) {
     button.addEventListener("click", () => {
-        if (storedFirstInput !== null) return;
         storedFirstInput = input.value;
         operatorInput = button.innerText;
         input.value = "";
@@ -82,12 +81,9 @@ document.addEventListener("DOMContentLoaded", () => {
         keyboardInput.addEventListener("click", () => {
             let startKeyboard = startInput();
             document.write(`
-
                 <h1>${startKeyboard[1]} ${startKeyboard[2]} ${startKeyboard[3]} equals:</h1>
                 <p>${startKeyboard[0]}</p>
-                <button type="button" id="keyboardInput">Start Keyboard Input</button>
             `);
         });
     }
 });
-
