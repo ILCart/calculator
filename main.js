@@ -38,7 +38,7 @@ function startInput() {
     return [doMaffs(operator, number1, number2),number1,operator, number2];
 
 }
-
+//Add functionality to the digits
 function keypadOnClick(button, input) {
     button.addEventListener("click", () => {
         input.value += button.innerText;
@@ -67,22 +67,26 @@ document.addEventListener("DOMContentLoaded", () => {
             operatorOnClick(btn, input);
         }
     }
+    //Check for eval (equals) button
     let eval = document.getElementById("eval");
     if (eval !== null) {
+        //Add listener for click on eval btun
         eval.addEventListener("click", () => {
             console.log(operatorInput, storedFirstInput, input.value);
+            //do math
             input.value = doMaffs(operatorInput, storedFirstInput, input.value);
+            //Reset the first input
             storedFirstInput = null;
         });
     }
-    //Keyboard
+    //Prompts
     let keyboardInput = document.getElementById("keyboardInput");
     if (keyboardInput !== null) {
         keyboardInput.addEventListener("click", () => {
             let startKeyboard = startInput();
             document.write(`
-                <h1>${startKeyboard[1]} ${startKeyboard[2]} ${startKeyboard[3]} equals:</h1>
-                <p>${startKeyboard[0]}</p>
+                <h2>${startKeyboard[1]} ${startKeyboard[2]} ${startKeyboard[3]} =</h2>
+                <h1>${startKeyboard[0]}</h1>
             `);
         });
     }
